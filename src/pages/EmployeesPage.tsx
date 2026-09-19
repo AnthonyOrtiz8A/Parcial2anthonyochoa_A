@@ -31,7 +31,7 @@ function EmployeesPage() {
     department: selectedDepartment || undefined,
     status: selectedStatus || undefined,
   });
-  const employees = data?.data || [];
+  const capacitaciones = data?.data || [];
 
   // Segunda query, sin filtros — las estadísticas son sobre el TOTAL de empleados,
   // no sobre el filtro activo, así que necesitan su propia lista completa cacheada aparte.
@@ -109,7 +109,7 @@ function EmployeesPage() {
         <div>
           <h2 className="text-2xl font-bold text-slate-900">Gestión de Empleados</h2>
           <p className="text-slate-500 mt-1">
-            {loading ? 'Cargando...' : `${employees.length} de ${totalEmployees} empleados`}
+            {loading ? 'Cargando...' : `${capacitaciones.length} de ${totalEmployees} capacitaciones`}
           </p>
         </div>
         <button
@@ -199,20 +199,20 @@ function EmployeesPage() {
       )}
 
       {/* Sin resultados */}
-      {!loading && !isError && employees.length === 0 && (
+      {!loading && !isError && capacitaciones.length === 0 && (
         <div className="text-center py-12 text-slate-500">
           <p>No se encontraron empleados con los filtros aplicados.</p>
         </div>
       )}
 
       {/* Lista de empleados */}
-      {!loading && !isError && employees.length > 0 && (
+      {!loading && !isError && capacitaciones.length > 0 && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {employees.map(employee => (
-            <div key={employee.id} className="relative">
+          {capacitaciones.map(capacitacion => (
+            <div key={capacitacion.id} className="relative">
               <div className="absolute -top-2.5 -right-2.5 z-10 flex gap-1">
                 <button
-                  onClick={() => handleOpenEdit(employee)}
+                  onClick={() => handleOpenEdit(capacitacion)}
                   aria-label="Editar empleado"
                   title="Editar empleado"
                   className="w-6 h-6 rounded-full border-2 border-white bg-brand-600 text-white cursor-pointer text-xs leading-5 shadow-md"
@@ -220,7 +220,7 @@ function EmployeesPage() {
                   ✎
                 </button>
                 <button
-                  onClick={() => handleDeleteEmployee(employee.id)}
+                  onClick={() => handleDeleteEmployee(capacitacion.id)}
                   aria-label="Eliminar empleado"
                   title="Eliminar empleado"
                   className="w-6 h-6 rounded-full border-2 border-white bg-red-500 text-white cursor-pointer text-sm leading-5 shadow-md"
@@ -229,7 +229,7 @@ function EmployeesPage() {
                 </button>
               </div>
               <EmployeeCard
-                employee={employee}
+                employee={capacitacion}
                 onSelect={handleSelectEmployee}
                 onToggleStatus={handleToggleStatus}
               />

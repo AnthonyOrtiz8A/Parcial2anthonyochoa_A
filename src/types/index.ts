@@ -73,3 +73,17 @@ export interface NavItem {
   icon: string;
   allowedRoles: EmployeeRole[];
 }
+
+export type TrainingStatus = "planned" | "active" | "completed" | "cancelled";
+
+export interface Training {
+  id: number;
+  nombre: string;
+  categoria: string;
+  instructor: string;
+  fechaInicio: string;
+  fechaFin: string;
+  cupoMaximo: number;
+  inscritos: number;
+  estado: TrainingStatus;
+}
